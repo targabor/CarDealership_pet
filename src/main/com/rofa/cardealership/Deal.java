@@ -4,12 +4,12 @@ public class Deal {
 
     private Car carForSale;
     private String sellerName;
-    private String sellersPhone;
+    private int sellersPhone;
     private String sellersEmail;
 
     public Deal(){ }
 
-    public Deal(Car cCar, String cSName, String sPhone, String sMail){
+    public Deal(Car cCar, String cSName, int sPhone, String sMail){
         this.carForSale = cCar;
         this.sellerName = cSName;
         this.sellersPhone = sPhone;
@@ -32,11 +32,11 @@ public class Deal {
         this.sellerName = sellerName;
     }
 
-    public String getSellersPhone() {
+    public int getSellersPhone() {
         return sellersPhone;
     }
 
-    public void setSellersPhone(String sellersPhone) {
+    public void setSellersPhone(int sellersPhone) throws NumberFormatException {
         this.sellersPhone = sellersPhone;
     }
 
