@@ -7,6 +7,8 @@ public class Deal {
     private String sellersPhone;
     private String sellersEmail;
 
+    public Deal(){ }
+
     public Deal(Car cCar, String cSName, String sPhone, String sMail){
         this.carForSale = cCar;
         this.sellerName = cSName;

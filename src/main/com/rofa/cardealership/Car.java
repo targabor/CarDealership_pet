@@ -6,14 +6,16 @@ public class Car {
     private String model;
     private int yearOfMan;
     private String color;
-    private int speedometer;
+    private int kmeterTrav;
+
+    public Car(){ }
 
     public Car(String cBrand, String cModel, int cYOM, String cColor, int cSM){
         this.brand = cBrand;
         this.model = cModel;
         this.yearOfMan = cYOM;
         this.color = cColor;
-        this.speedometer = cSM;
+        this.kmeterTrav = cSM;
     }
 
 
@@ -39,7 +41,7 @@ public class Car {
         return yearOfMan;
     }
 
-    public void setYearOfMan(int yearOfMan) {
+    public void setYearOfMan(int yearOfMan) throws NumberFormatException {
         this.yearOfMan = yearOfMan;
     }
 
@@ -51,12 +53,12 @@ public class Car {
         this.color = color;
     }
 
-    public int getSpeedometer() {
-        return speedometer;
+    public int getKmeterTrav() {
+        return kmeterTrav;
     }
 
-    public void setSpeedometer(int speedometer) {
-        this.speedometer = speedometer;
+    public void setKmeterTrav(int kmeterTrav) throws NumberFormatException {
+        this.kmeterTrav = kmeterTrav;
     }
 
 
