@@ -1,13 +1,15 @@
 package com.rofa.cardealership;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class MainScreen {
 
     private final static Scanner userInput = new Scanner(System.in);
+    private static LinkedList<Deal> deals = new LinkedList<>();
 
-    public static void startPosition(){
-
+    public static void startPosition() {
+        clearScreen();
         System.out.println("\t\t\tCar DealerShip");
         System.out.println("\nChoose what you want to do!");
         System.out.println("\nU - Upload a new car");
@@ -15,11 +17,18 @@ public class MainScreen {
         MainScreen.userChoose(userInput.next());
     }
 
-    public static void userChoose(String uChoose){
+    public static void userChoose(String uChoose) {
         clearScreen();
-        switch (uChoose){
-            case "U":{
-
+        switch (uChoose) {
+            case "U": {
+                deals.add(DealActions.newDeal());
+                startPosition();
+                break;
+            }
+            default: {
+                System.out.println("You entered wrong character, try again!");
+                startPosition();
+                break;
             }
         }
 
