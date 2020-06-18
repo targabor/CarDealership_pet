@@ -8,7 +8,6 @@ public class SearchEngine {
 
 
         private LinkedList<Deal> searchResult;
-        private String keyword;
         private Scanner userInput = new Scanner(System.in);
 
 
@@ -18,6 +17,7 @@ public class SearchEngine {
                                 searchByBrand();
                                 if(searchResult != null){
                                         System.out.println("Search Results:");
+                                        writeTheResultOut();
                                 }
                                 break;
                         }
@@ -29,9 +29,16 @@ public class SearchEngine {
 
         }
 
-        private String getKeyword(){
+        public void writeTheResultOut(){
+
+                for(Deal thisDeal: searchResult){
+                        System.out.println("Itt vagyok");
+                        System.out.println(thisDeal.toString());
+                }
+
 
         }
+
 
         private void searchByBrand(){
 
