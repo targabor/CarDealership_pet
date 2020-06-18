@@ -11,28 +11,45 @@ public class SearchEngine {
         private Scanner userInput = new Scanner(System.in);
 
 
-        public void searchOption(String userInput){
-                switch (userInput){
-                        case "B" : {
+        public void searchOption(String userInput) {
+                switch (userInput) {
+                        case "B": {
                                 searchByBrand();
+                                if (searchResult != null) {
+                                        System.out.println("Search Results:");
+                                        writeTheResultOut();
+                                } else {
+                                        System.out.println("There is no result, try again!");
+                                }
+                                searchResult = null;
+                                break;
+                        }
+                        case "C":{
+                                searchByColor();
                                 if(searchResult != null){
                                         System.out.println("Search Results:");
                                         writeTheResultOut();
+                                }else {
+                                        System.out.println("Tehre is no result, try again!");
                                 }
+                                searchResult = null;
                                 break;
-                        }
-                        default : {
+                                }
+                        
+
+
+                        default: {
                                 System.out.println("Bad input character, try again!");
                                 DealActions.searchDeal();
                         }
-                }
 
+
+                }
         }
 
         public void writeTheResultOut(){
 
                 for(Deal thisDeal: searchResult){
-                        System.out.println("Itt vagyok");
                         System.out.println(thisDeal.toString());
                 }
 
@@ -58,6 +75,24 @@ public class SearchEngine {
                         }
                 }
 
+        }
+
+        private void searchByColor(){
+                searchResult = new LinkedList<>();
+                MainScreen.clearScreen();
+                System.out.println("Enter the color, what you search:");
+                String keyword = userInput.nextLine(); //Get the keyword, from the user
+
+                Iterator<Deal> brandIterator = MainScreen.getDeals().iterator(); //Get an iterator, to go trough in deals
+
+                while(brandIterator.hasNext()){ //while there is a next brand
+                        Deal currentDeal = brandIterator.next(); // get the Deal and Car
+                        Car currentCar = currentDeal.getCarForSale();
+
+                        if(currentCar.getColor().equals(keyword)){         //Compare the actual car's brand, with the keyword
+                                searchResult.add(currentDeal);
+                        }
+                }
         }
 
 
