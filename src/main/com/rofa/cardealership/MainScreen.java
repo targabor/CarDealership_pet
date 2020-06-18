@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MainScreen {
 
     private final static Scanner userInput = new Scanner(System.in);
-    private static LinkedList<Deal> deals = new LinkedList<>();
+    private static  LinkedList<Deal> deals = new LinkedList<>();
 
     public static void startPosition() {
         clearScreen();
@@ -25,6 +25,12 @@ public class MainScreen {
                 startPosition();
                 break;
             }
+            case "S":{
+
+                DealActions.searchDeal();
+                startPosition();
+                break;
+            }
             default: {
                 System.out.println("You entered wrong character, try again!");
                 startPosition();
@@ -38,4 +44,6 @@ public class MainScreen {
         System. out. print("\033[H\033[2J");
         System. out. flush();
     }
+
+    public static LinkedList<Deal> getDeals(){return deals;}
 }

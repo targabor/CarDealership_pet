@@ -1,5 +1,6 @@
 package com.rofa.cardealership;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class DealActions {
@@ -42,7 +43,7 @@ public class DealActions {
                 carForSale.setKmeterTrav(Integer.parseInt(userInput.nextLine()));
                 isNum = true;
             } catch (NumberFormatException nEx) {
-                System.out.println("\nCsak számot adhat meg!");
+                System.out.println("\nCsak számot adhat meg kilometernek!");
             }
         }
         //Get the sellers data
@@ -50,9 +51,17 @@ public class DealActions {
         System.out.println("\nSeller's data:");
         System.out.print("\nName: ");
         newDeal.setSellerName(userInput.nextLine());
-        //Sellers phone
-        System.out.print("\nPhone number: ");
-        newDeal.setSellersPhone(userInput.nextLine());
+        //Sellers phone - IT CAN BE ONLY NUMBER, CODE IT
+        isNum = false;
+        while(!isNum) {
+            System.out.print("\nPhone number: ");
+            try {
+                newDeal.setSellersPhone(Integer.parseInt(userInput.nextLine()));
+                isNum = true;
+            } catch (NumberFormatException nEx) {
+                System.out.println("A telefonszám csak szám lehet!");
+            }
+        }
         //Sellers email address
         System.out.print("\nE-mail address: ");
         newDeal.setSellersEmail(userInput.nextLine());
@@ -60,5 +69,23 @@ public class DealActions {
         System.out.print("\nThe new deal was added to the server!\n\n\n ");
 
         return newDeal;
+    }
+
+    public static LinkedList<Deal> searchDeal(){
+        LinkedList<Deal> resultDeals = null;
+        MainScreen.clearScreen();
+        System.out.println("What do you looking for?");
+        System.out.println("-----Car-----");
+        System.out.println("\tB - Brand");
+        System.out.println("\tC - Color");
+        System.out.println("\tK - Traveled kilometer is less than");
+        System.out.println("-----Seller-----");
+        System.out.println("\tN - Name");
+        System.out.println("\tE - E-mail address");
+
+        SearchEngine userSearchEngine = new SearchEngine();
+        userSearchEngine.searchOption(userInput.nextLine());
+
+        return resultDeals;
     }
 }
