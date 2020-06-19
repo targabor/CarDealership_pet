@@ -70,7 +70,10 @@ public class SearchEngine {
                         Deal currentDeal = brandIterator.next(); // get the Deal and Car
                         Car currentCar = currentDeal.getCarForSale();
 
-                        if(currentCar.getBrand().equals(keyword)){         //Compare the actual car's brand, with the keyword
+
+                        //Compare the actual car's brand, with the keyword, lowercase for exclude that cases
+                        //when the user use higher, lower characters
+                        if(currentCar.getBrand().toLowerCase().equals(keyword.toLowerCase())){
                                 searchResult.add(currentDeal);
                         }
                 }
@@ -83,16 +86,20 @@ public class SearchEngine {
                 System.out.println("Enter the color, what you search:");
                 String keyword = userInput.nextLine(); //Get the keyword, from the user
 
-                Iterator<Deal> brandIterator = MainScreen.getDeals().iterator(); //Get an iterator, to go trough in deals
+                Iterator<Deal> colorIterator = MainScreen.getDeals().iterator(); //Get an iterator, to go trough in deals
 
-                while(brandIterator.hasNext()){ //while there is a next brand
-                        Deal currentDeal = brandIterator.next(); // get the Deal and Car
+                while(colorIterator.hasNext()){ //while there is a next color
+                        Deal currentDeal = colorIterator.next(); // get the Deal and Car
                         Car currentCar = currentDeal.getCarForSale();
 
-                        if(currentCar.getColor().equals(keyword)){         //Compare the actual car's brand, with the keyword
+                        if(currentCar.getColor().equals(keyword)){  //Compare the actual car's color, with the keyword
                                 searchResult.add(currentDeal);
                         }
                 }
+        }
+
+        private void searchByManYear(){
+
         }
 
 
