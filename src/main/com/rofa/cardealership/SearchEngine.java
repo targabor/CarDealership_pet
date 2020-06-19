@@ -13,30 +13,36 @@ public class SearchEngine {
 
 
         public void searchOption(String userInput) {
-                switch (userInput) {
+                String userInputL = userInput.toUpperCase(); //Converted into upper case, to avoid problems
+                switch (userInputL) {                        //with upper-lower cases
                         case "B": {
                                 searchByBrand();
-                                if (searchResult != null) {
+                                if (searchResult.size() != 0) { //if the results length is 0, then there is no result xd
                                         System.out.println("Search Results:");
                                         writeTheResultOut();
                                 } else {
                                         System.out.println("There is no result, try again!");
                                 }
-                                searchResult = null;
+                                searchResult = null; //null the result, cuz i don't want to store every result
                                 break;
                         }
                         case "C":{
                                 searchByColor();
-                                if(searchResult != null){
+                                if(searchResult.size() != 0){
                                         System.out.println("Search Results:");
                                         writeTheResultOut();
                                 }else {
-                                        System.out.println("Tehre is no result, try again!");
+                                        System.out.println("There is no result, try again!");
                                 }
                                 searchResult = null;
                                 break;
                                 }
-                        
+                        case "Y":{
+                                searchByManYear();
+                                if(searchResult.size() != 0){
+
+                                }
+                        }
 
 
                         default: {
@@ -93,7 +99,7 @@ public class SearchEngine {
                         Deal currentDeal = colorIterator.next(); // get the Deal and Car
                         Car currentCar = currentDeal.getCarForSale();
 
-                        if(currentCar.getColor().equals(keyword)){  //Compare the actual car's color, with the keyword
+                        if(currentCar.getColor().toLowerCase().equals(keyword.toLowerCase())){  //Compare the actual car's color, with the keyword
                                 searchResult.add(currentDeal);
                         }
                 }

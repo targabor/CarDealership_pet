@@ -82,6 +82,7 @@ public class DealActions {
         System.out.println("-----Car-----");
         System.out.println("\tB - Brand");
         System.out.println("\tC - Color");
+        System.out.println("\tY - The car manufactured after (year)");
         System.out.println("\tK - Traveled kilometer is less than");
         System.out.println("-----Seller-----");
         System.out.println("\tN - Name");
