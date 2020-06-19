@@ -3,11 +3,12 @@ package com.rofa.cardealership;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.List;
 
 public class SearchEngine {
 
 
-        private LinkedList<Deal> searchResult;
+        private List<Deal> searchResult;
         private Scanner userInput = new Scanner(System.in);
 
 
@@ -100,10 +101,45 @@ public class SearchEngine {
 
         private void searchByManYear(){
 
+                searchResult = new LinkedList<>();
+                MainScreen.clearScreen();
+                System.out.println("Enter the year from which we will search for cars: ");
+
+                //Now the input will be a number, so we need to check the value of it
+
+                boolean isNum = false;
+                Integer keyYear = null;
+                while(!isNum) {
+                       try {
+                        keyYear = userInput.nextInt(); //If the user input is not a number, then it makes error
+                        isNum = true;                  //If the input is correct, it makes the condition true
+                       }catch (NumberFormatException nEx) {
+                       System.out.println("The year can only be a number.");
+                       }
+                }
+
+                Iterator<Deal> yearIterator = MainScreen.getDeals().iterator();
+
+                while(yearIterator.hasNext()) //loop through the deals
+                {
+                        Deal currentDeal = yearIterator.next();
+                        Car currentCar = currentDeal.getCarForSale();
+
+                        if(currentCar.getYearOfMan() >= keyYear) {
+                                searchResult.add(currentDeal); //if the car's year >= than the keyword, i save
+                        }                                      //that into the searchResult
+
+
+                }
+
+
+
+
+                }
         }
 
 
 
 
 
-}
+
