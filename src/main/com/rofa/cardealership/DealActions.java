@@ -11,6 +11,7 @@ public class DealActions {
     public static Deal newDeal() {
 
         //Get the information about the car and seller
+        Seller carSeller = new Seller();
         Car carForSale = new Car();
         Deal newDeal = new Deal();
 
@@ -43,35 +44,38 @@ public class DealActions {
                 carForSale.setKmeterTrav(Integer.parseInt(userInput.nextLine()));
                 isNum = true;
             } catch (NumberFormatException nEx) {
-                System.out.println("\nCsak számot adhat meg kilometernek!");
+                System.out.println("\nYou can only give numbers, as traveled kilometers!");
             }
         }
         //Get the sellers data
         newDeal.setCarForSale(carForSale);
         System.out.println("\nSeller's data:");
         System.out.print("\nName: ");
-        newDeal.setSellerName(userInput.nextLine());
-        //Sellers phone - IT CAN BE ONLY NUMBER, CODE IT
+        carSeller.setName(userInput.nextLine());
+        //Sellers Phone number
+        //it is only number, but it can starts with 0, so I can't store it in a int :(
+        //but in the setter, i check that, the text contains only digits
+        //if not, it can drop NumberFormatException
         isNum = false;
-        while(!isNum) {
+        while(!isNum)
+        try {
             System.out.print("\nPhone number: ");
-            try {
-                newDeal.setSellersPhone(Integer.parseInt(userInput.nextLine()));
-                isNum = true;
-            } catch (NumberFormatException nEx) {
-                System.out.println("A telefonszám csak szám lehet!");
-            }
+            carSeller.setPhoneNumber(userInput.nextLine());
+            isNum = true;
+        }catch (NumberFormatException nEx){
+            System.out.println("\nYou can only give numbers as phone number!");
         }
         //Sellers email address
         System.out.print("\nE-mail address: ");
-        newDeal.setSellersEmail(userInput.nextLine());
+        carSeller.setEmailAddress(userInput.nextLine());
+        newDeal.setCarSeller(carSeller);
 
         System.out.print("\nThe new deal was added to the server!\n\n\n ");
 
         return newDeal;
     }
 
-    public static LinkedList<Deal> searchDeal(){
+    public static void searchDeal(){
         LinkedList<Deal> resultDeals = null;
         MainScreen.clearScreen();
         System.out.println("What do you looking for?");
@@ -86,6 +90,5 @@ public class DealActions {
         SearchEngine userSearchEngine = new SearchEngine();
         userSearchEngine.searchOption(userInput.nextLine());
 
-        return resultDeals;
     }
 }

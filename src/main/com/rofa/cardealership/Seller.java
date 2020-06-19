@@ -18,8 +18,14 @@ public class Seller {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNumber) throws NumberFormatException{
+
+        //In here, I check that, is the given phone number, contains only digits
+        String regex = "\\d+";
+        if(phoneNumber.matches(regex))
+            this.phoneNumber = phoneNumber;
+        else
+            throw new NumberFormatException();
     }
 
     public String getEmailAddress() {
