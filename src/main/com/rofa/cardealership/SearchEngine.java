@@ -1,5 +1,6 @@
 package com.rofa.cardealership;
 
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class SearchEngine {
 
 
         private List<Deal> searchResult;
-        private Scanner userInput = new Scanner(System.in);
+        private final Scanner userInput = new Scanner(System.in);
 
 
         public void searchOption(String userInput) {
@@ -17,33 +18,24 @@ public class SearchEngine {
                 switch (userInputL) {                        //with upper-lower cases
                         case "B": {
                                 searchByBrand();
-                                if (searchResult.size() != 0) { //if the results length is 0, then there is no result xd
-                                        System.out.println("Search Results:");
-                                        writeTheResultOut();
-                                } else {
-                                        System.out.println("There is no result, try again!");
-                                }
-                                searchResult = null; //null the result, cuz i don't want to store every result
+                                writeTheResultOut();
                                 break;
                         }
                         case "C":{
                                 searchByColor();
-                                if(searchResult.size() != 0){
-                                        System.out.println("Search Results:");
-                                        writeTheResultOut();
-                                }else {
-                                        System.out.println("There is no result, try again!");
-                                }
-                                searchResult = null;
+                                writeTheResultOut();
                                 break;
                                 }
                         case "Y":{
                                 searchByManYear();
-                                if(searchResult.size() != 0){
-
-                                }
+                                writeTheResultOut();
+                                break;
                         }
-
+                        case "K" : {
+                                searchByTravK();
+                                writeTheResultOut();
+                                break;
+                        }
 
                         default: {
                                 System.out.println("Bad input character, try again!");
@@ -55,12 +47,13 @@ public class SearchEngine {
         }
 
         public void writeTheResultOut(){
-
-                for(Deal thisDeal: searchResult){
-                        System.out.println(thisDeal.toString());
+                if (searchResult.size() != 0) { //if the results length is 0, then there is no result xd
+                        System.out.println("Search Result:");
+                        writeTheResultOut();
+                } else {
+                        System.out.println("There is no result, try again!");
                 }
-
-
+                searchResult = null;
         }
 
 
@@ -114,12 +107,13 @@ public class SearchEngine {
                 //Now the input will be a number, so we need to check the value of it
 
                 boolean isNum = false;
-                Integer keyYear = null;
-                while(!isNum) {
+                Integer keyYear = 1;        //I did this, cuz the input must be a positive number
+                while(!isNum && keyYear>0) {
                        try {
                         keyYear = userInput.nextInt(); //If the user input is not a number, then it makes error
                         isNum = true;                  //If the input is correct, it makes the condition true
-                       }catch (NumberFormatException nEx) {
+
+                       }catch (InputMismatchException iEx) {
                        System.out.println("The year can only be a number.");
                        }
                 }
@@ -137,11 +131,35 @@ public class SearchEngine {
 
 
                 }
+        }
 
+        private void searchByTravK(){
+                searchResult = new LinkedList<>();
+                MainScreen.clearScreen();
+                System.out.println("What should be the maximum mileage?");
 
-
-
+                boolean isNum = false;
+                int keyNum = 1;
+                while(!isNum && keyNum >= 0){ //Traveled kilometers can be 0 or more than that
+                        try {
+                                keyNum = userInput.nextInt();
+                                isNum = true;
+                        }catch (InputMismatchException iEx){
+                                System.out.println("The input should be a number!");
+                        }
                 }
+
+                Iterator<Deal> travIterator = MainScreen.getDeals().iterator();
+
+                while(travIterator.hasNext()){
+                        Deal currentDeal = travIterator.next();
+                        Car currentCar = currentDeal.getCarForSale();
+
+                        if(currentCar.getKmeterTrav() <= keyNum){
+                                searchResult.add(currentDeal);
+                        }
+                }
+        }
         }
 
 

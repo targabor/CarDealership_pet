@@ -16,4 +16,7 @@ Day 3 - 2020.06.19
 - Added more searchin feaute, such as search by year (need to type the others xd)
 - To avoid the upper-lower case problems, in the searchEngine, I convert everything into lowercase
  
+Day 4 - 2020.06.20
+-
+-I'm very slow, have to speed up my work xd
 
