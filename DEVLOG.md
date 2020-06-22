@@ -18,5 +18,5 @@ Day 3 - 2020.06.19
  
 Day 4 - 2020.06.20
 -
--I'm very slow, have to speed up my work xd
-
+- I'm very slow, have to speed up my work xd
+- Family stuff lack of time:( 

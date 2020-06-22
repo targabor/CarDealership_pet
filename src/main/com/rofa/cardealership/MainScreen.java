@@ -19,7 +19,7 @@ public class MainScreen {
 
     public static void userChoose(String uChoose) {
         clearScreen();
-        switch (uChoose) {
+        switch (uChoose.toUpperCase()) {
             case "U": {
                 deals.add(DealActions.newDeal());
                 startPosition();

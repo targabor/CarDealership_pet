@@ -36,7 +36,11 @@ public class SearchEngine {
                                 writeTheResultOut();
                                 break;
                         }
-
+                        case "N" : {
+                                searchBySellerN();
+                                writeTheResultOut();
+                                break;
+                        }
                         default: {
                                 System.out.println("Bad input character, try again!");
                                 DealActions.searchDeal();
@@ -62,20 +66,14 @@ public class SearchEngine {
                 searchResult = new LinkedList<>();
                 MainScreen.clearScreen();
                 System.out.println("Enter the brand, what you search:");
-                String keyword = userInput.nextLine(); //Get the keyword, from the user
+                String keyword = userInput.nextLine().toLowerCase(); //Get the keyword, from the user, converted into lowercase to avoid problems
 
-                Iterator<Deal> brandIterator = MainScreen.getDeals().iterator(); //Get an iterator, to go trough in deals
-
-                while(brandIterator.hasNext()){ //while there is a next brand
-                        Deal currentDeal = brandIterator.next(); // get the Deal and Car
+                for(Deal currentDeal : MainScreen.getDeals()){
                         Car currentCar = currentDeal.getCarForSale();
+                        String currentBrand = currentCar.getBrand().toLowerCase();
 
-
-                        //Compare the actual car's brand, with the keyword, lowercase for exclude that cases
-                        //when the user use higher, lower characters
-                        if(currentCar.getBrand().toLowerCase().equals(keyword.toLowerCase())){
+                        if(currentBrand.equals(keyword))
                                 searchResult.add(currentDeal);
-                        }
                 }
 
         }
@@ -84,18 +82,16 @@ public class SearchEngine {
                 searchResult = new LinkedList<>();
                 MainScreen.clearScreen();
                 System.out.println("Enter the color, what you search:");
-                String keyword = userInput.nextLine(); //Get the keyword, from the user
+                String keyword = userInput.nextLine().toLowerCase(); //Get the keyword, from the user, it will be lowercase
+                                                                     //to avoid the upper-lower case problem
+                for(Deal currentDeal : MainScreen.getDeals()){
 
-                Iterator<Deal> colorIterator = MainScreen.getDeals().iterator(); //Get an iterator, to go trough in deals
-
-                while(colorIterator.hasNext()){ //while there is a next color
-                        Deal currentDeal = colorIterator.next(); // get the Deal and Car
                         Car currentCar = currentDeal.getCarForSale();
+                        String carColor = currentCar.getColor().toLowerCase();
 
-                        if(currentCar.getColor().toLowerCase().equals(keyword.toLowerCase())){  //Compare the actual car's color, with the keyword
+                        if(carColor.equals(keyword))
                                 searchResult.add(currentDeal);
                         }
-                }
         }
 
         private void searchByManYear(){
@@ -107,7 +103,7 @@ public class SearchEngine {
                 //Now the input will be a number, so we need to check the value of it
 
                 boolean isNum = false;
-                Integer keyYear = 1;        //I did this, cuz the input must be a positive number
+                int keyYear = 1;        //I did this, cuz the input must be a positive number
                 while(!isNum && keyYear>0) {
                        try {
                         keyYear = userInput.nextInt(); //If the user input is not a number, then it makes error
@@ -118,18 +114,11 @@ public class SearchEngine {
                        }
                 }
 
-                Iterator<Deal> yearIterator = MainScreen.getDeals().iterator();
-
-                while(yearIterator.hasNext()) //loop through the deals
-                {
-                        Deal currentDeal = yearIterator.next();
+                for(Deal currentDeal : MainScreen.getDeals()){
                         Car currentCar = currentDeal.getCarForSale();
 
-                        if(currentCar.getYearOfMan() >= keyYear) {
-                                searchResult.add(currentDeal); //if the car's year >= than the keyword, i save
-                        }                                      //that into the searchResult
-
-
+                        if(currentCar.getYearOfMan() >= keyYear)
+                                searchResult.add(currentDeal);
                 }
         }
 
@@ -149,18 +138,28 @@ public class SearchEngine {
                         }
                 }
 
-                Iterator<Deal> travIterator = MainScreen.getDeals().iterator();
-
-                while(travIterator.hasNext()){
-                        Deal currentDeal = travIterator.next();
+                for(Deal currentDeal : MainScreen.getDeals()){
                         Car currentCar = currentDeal.getCarForSale();
-
-                        if(currentCar.getKmeterTrav() <= keyNum){
+                        if(currentCar.getKmeterTrav() <= keyNum)
                                 searchResult.add(currentDeal);
-                        }
                 }
         }
+
+        private void searchBySellerN(){
+
+                System.out.println("Enter the current owner's name:");
+                String keyword = userInput.nextLine().toLowerCase();
+
+                for(Deal currentDeal : MainScreen.getDeals()){
+                        String sellerName = currentDeal.getCarSeller().getName();
+                        if(sellerName.equals(keyword))
+                                searchResult.add(currentDeal);
+                }
+
         }
+
+
+}
 
 
 
