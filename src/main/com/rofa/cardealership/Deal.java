@@ -33,7 +33,7 @@ public class Deal {
        "\nCar's model: " + this.carForSale.getModel()+
        "\nCar's color: " + this.carForSale.getColor()+
        "\nYear of the manufacture: " + this.carForSale.getYearOfMan()+
-       "\nTraveled kilometers: " + this.carForSale.getKmeterTrav()+
+       "\nTraveled kilometers: " + this.carForSale.getKmeterTrav() + " km" +
        "\n----------Seller's Details----------"+
        "\nSeller's name: " + this.carSeller.getName()+
        "\nSeller's e-mail: " + this.carSeller.getEmailAddress()+

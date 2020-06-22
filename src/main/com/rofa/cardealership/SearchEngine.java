@@ -53,7 +53,9 @@ public class SearchEngine {
         public void writeTheResultOut(){
                 if (searchResult.size() != 0) { //if the results length is 0, then there is no result xd
                         System.out.println("Search Result:");
-                        writeTheResultOut();
+                        for(Deal writeResultOut : searchResult){
+                                System.out.println(writeResultOut);
+                        }
                 } else {
                         System.out.println("There is no result, try again!");
                 }
