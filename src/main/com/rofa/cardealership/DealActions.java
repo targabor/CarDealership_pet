@@ -86,7 +86,6 @@ public class DealActions {
         System.out.println("\tK - Traveled kilometer is less than");
         System.out.println("-----Seller-----");
         System.out.println("\tN - Name");
-        System.out.println("\tE - E-mail address");
 
         SearchEngine userSearchEngine = new SearchEngine();
         userSearchEngine.searchOption(userInput.nextLine());

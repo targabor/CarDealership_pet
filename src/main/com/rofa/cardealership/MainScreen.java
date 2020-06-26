@@ -46,4 +46,6 @@ public class MainScreen {
     }
 
     public static LinkedList<Deal> getDeals(){return deals;}
+
+
 }

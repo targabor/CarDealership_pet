@@ -116,12 +116,16 @@ public class SearchEngine {
                        }
                 }
 
+
+
                 for(Deal currentDeal : MainScreen.getDeals()){
                         Car currentCar = currentDeal.getCarForSale();
 
                         if(currentCar.getYearOfMan() >= keyYear)
                                 searchResult.add(currentDeal);
                 }
+
+
         }
 
         private void searchByTravK(){
@@ -155,10 +159,11 @@ public class SearchEngine {
                 for(Deal currentDeal : MainScreen.getDeals()){
                         String sellerName = currentDeal.getCarSeller().getName();
                         if(sellerName.equals(keyword))
-                                searchResult.add(currentDeal);
+                                 searchResult.add(currentDeal);
                 }
 
         }
+
 
 
 }
