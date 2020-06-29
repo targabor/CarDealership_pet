@@ -9,20 +9,19 @@ import org.junit.jupiter.api.Test;
 public class TestDataBase {
 
 
-    DataBase carDB = null;
-
+    DataBase db = new DataBase();
     @BeforeEach
     public void init()
     {
-        carDB = new DataBase();
-        carDB.openDBConnection();
+
+        db.openDBConnection();
     }
 
     @Test
     public void testOpenDBConnection(){
-        assertTrue(carDB.openDBConnection());
+        assertTrue(db.openDBConnection());
     }
 
     @Test
-    public void testCloseDBConnection() { assertTrue(carDB.closeDBConnection());}
+    public void testCloseDBConnection() { assertTrue(db.closeDBConnection());}
 }

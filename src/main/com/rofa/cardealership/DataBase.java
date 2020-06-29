@@ -10,14 +10,14 @@ import java.sql.Statement;
 
 public class DataBase {
 
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3306/cardealership";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "";
+    private  final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private  final String URL = "jdbc:mysql://localhost:3306/cardealership";
+    private  final String USERNAME = "root";
+    private  final String PASSWORD = "";
 
-    private Connection dbConn = null;
+    private  Connection dbConn = null;
 
-    public boolean openDBConnection(){
+    public  boolean openDBConnection(){
 
         try {
             dbConn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
@@ -29,7 +29,7 @@ public class DataBase {
 
     }
 
-    public boolean closeDBConnection(){
+    public  boolean closeDBConnection(){
         try{
             dbConn.close();
             return true;
@@ -38,6 +38,10 @@ public class DataBase {
             return false;
         }
     }
+
+    public  Connection getConnection(){
+        openDBConnection();
+        return dbConn;}
     
 
 

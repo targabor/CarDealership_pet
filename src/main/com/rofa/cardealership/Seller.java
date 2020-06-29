@@ -2,9 +2,18 @@ package com.rofa.cardealership;
 
 public class Seller {
 
+    private int ID;
     private String name;
     private String phoneNumber;
     private String emailAddress;
+
+    public Seller(){}
+
+    public Seller(String cName, String cPhoneNumber, String cEmailAddress){
+        this.name = cName;
+        this.phoneNumber = cPhoneNumber;
+        this.emailAddress = cEmailAddress;
+    }
 
     public String getName() {
         return name;
@@ -34,5 +43,13 @@ public class Seller {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

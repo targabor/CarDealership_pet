@@ -1,5 +1,6 @@
 package com.rofa.cardealership;
 
+import javax.xml.crypto.Data;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -69,9 +70,7 @@ public class DealActions {
         System.out.print("\nE-mail address: ");
         carSeller.setEmailAddress(userInput.nextLine());
         newDeal.setCarSeller(carSeller);
-
-        System.out.print("\nThe new deal was added to the server!\n\n\n ");
-
+        DbStatements.addDealToDB(newDeal);
         return newDeal;
     }
 

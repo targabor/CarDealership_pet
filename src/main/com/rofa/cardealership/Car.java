@@ -3,6 +3,10 @@ package com.rofa.cardealership;
 public class Car {
 
 
+    private int ID;
+
+
+
     private String model;
     private int yearOfMan;
     private String color;
@@ -61,5 +65,12 @@ public class Car {
         this.kmeterTrav = kmeterTrav;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
 }

@@ -21,7 +21,9 @@ public class MainScreen {
         clearScreen();
         switch (uChoose.toUpperCase()) {
             case "U": {
-                deals.add(DealActions.newDeal());
+                Deal newDeal = DealActions.newDeal();
+                deals.add(newDeal);
+
                 startPosition();
                 break;
             }
