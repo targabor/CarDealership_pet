@@ -1,16 +1,16 @@
 package com.rofa.cardealership;
 
+import java.util.Scanner;
+
 public class Car {
 
 
     private int ID;
-
-
-
     private String model;
     private int yearOfMan;
     private String color;
     private int kmeterTrav;
+    private static final Scanner userInput = new Scanner(System.in);
 
     public Car(){ }
 
@@ -71,6 +71,40 @@ public class Car {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public static Car newCar(){
+        Car newCar = new Car();
+
+        System.out.println("\t\tCar Upload Form");
+        System.out.print("\nCar's brand: ");
+        newCar.setBrand(userInput.nextLine());
+        System.out.print("\nCar's model: ");
+        newCar.setModel(userInput.nextLine());
+        boolean isNum = false;
+        while (!isNum) {
+            try {
+                System.out.print("\nYear of manufacture: ");
+                newCar.setYearOfMan(Integer.parseInt(userInput.nextLine()));
+                isNum = true;
+            } catch (NumberFormatException nEx) { //If the user's input isn't a number
+                System.out.println("\nCsak számot adhat meg!");
+            }
+        }
+        System.out.print("\nCar's color: ");
+        newCar.setColor(userInput.nextLine());
+        isNum = false;
+        while (!isNum) {
+            try {
+                System.out.print("\nKilometers traveled: ");
+                newCar.setKmeterTrav(Integer.parseInt(userInput.nextLine()));
+                isNum = true;
+            } catch (NumberFormatException nEx) {
+                System.out.println("\nYou can only give numbers, as traveled kilometers!");
+            }
+        }
+
+        return newCar;
     }
 
 }

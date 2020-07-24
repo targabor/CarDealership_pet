@@ -2,6 +2,7 @@ package com.rofa.cardealership;
 
 public class Deal {
 
+    private int ID;
     private Car carForSale;
     private Seller carSeller;
 
@@ -23,6 +24,14 @@ public class Deal {
     public Seller getCarSeller() {return carSeller;}
 
     public void setCarSeller(Seller carSeller){this.carSeller = carSeller;}
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     @Override //Override the toString method, to get a readable version :)
     public String toString() {

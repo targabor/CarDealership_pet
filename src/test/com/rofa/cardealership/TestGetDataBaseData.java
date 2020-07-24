@@ -14,6 +14,6 @@ public class TestGetDataBaseData {
 
     @Test
     public void testGetTableLength(){
-        assertEquals(1,GetDataBaseData.getTableLength(db.getConnection(),"cars"));
+        assertEquals(0,GetDataBaseData.getTableLength(db.getConnection(),"cars"));
     }
 }

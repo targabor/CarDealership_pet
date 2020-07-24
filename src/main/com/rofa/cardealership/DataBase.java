@@ -1,23 +1,19 @@
 package com.rofa.cardealership;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DataBase {
 
-    private  final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private  final String URL = "jdbc:mysql://localhost:3306/cardealership";
-    private  final String USERNAME = "root";
-    private  final String PASSWORD = "";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/cardealership";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
 
-    private  Connection dbConn = null;
+    private static Connection dbConn = null;
 
-    public  boolean openDBConnection(){
+    public  static boolean openDBConnection(){
 
         try {
             dbConn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
@@ -29,7 +25,7 @@ public class DataBase {
 
     }
 
-    public  boolean closeDBConnection(){
+    public static boolean closeDBConnection(){
         try{
             dbConn.close();
             return true;
@@ -39,7 +35,7 @@ public class DataBase {
         }
     }
 
-    public  Connection getConnection(){
+    public static Connection getConnection(){
         openDBConnection();
         return dbConn;}
     

@@ -4,6 +4,11 @@ public class Main {
 
     public static void main(String[] args){
 
-        MainScreen.startPosition();
+        if(DataBase.openDBConnection()){ //test the connection
+            DataBase.closeDBConnection();
+            MainScreen.openScreen();
+        }else{
+            System.out.println("Failed to create the connection to the server!");
+        }
     }
 }

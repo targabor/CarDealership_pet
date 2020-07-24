@@ -1,55 +1,59 @@
 package com.rofa.cardealership;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Seller {
 
-    private int ID;
-    private String name;
-    private String phoneNumber;
-    private String emailAddress;
+    private String sellerName;
+    private String sellerPhoneNumber;
+    private String sellerEmail;
 
-    public Seller(){}
 
-    public Seller(String cName, String cPhoneNumber, String cEmailAddress){
-        this.name = cName;
-        this.phoneNumber = cPhoneNumber;
-        this.emailAddress = cEmailAddress;
+
+    public String getSellerName() {
+        return sellerName;
     }
 
-    public String getName() {
-        return name;
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getSellerPhoneNumber() {
+        return sellerPhoneNumber;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public boolean setSellerPhoneNumber(String sSellerPhoneNumber) {
+        if(Math.isNumber(sellerPhoneNumber)){
+            this.sellerPhoneNumber = sSellerPhoneNumber;
+            return true;
+        }
+        return false;
     }
 
-    public void setPhoneNumber(String phoneNumber) throws NumberFormatException{
-
-        //In here, I check that, is the given phone number, contains only digits
-        String regex = "\\d+";
-        if(phoneNumber.matches(regex))
-            this.phoneNumber = phoneNumber;
-        else
-            throw new NumberFormatException();
+    public String getSellerEmail() {
+        return sellerEmail;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+    public Seller getSellerFromDB(String loginEmail, String loginPassword){
 
-    public int getID() {
-        return ID;
-    }
 
-    public void setID(int ID) {
-        this.ID = ID;
+        Seller returnSeller = null;
+
+        String sql = "select count(sellerID) from seller where emailAddress = ? and password = ?;";
+
+        try{
+            PreparedStatement psmt = DataBase.getConnection().prepareStatement(sql);
+        }catch (SQLException sqlEX){
+            System.out.println("There is an error at the getSellerFromDB method");
+        }
+
+
+        return returnSeller;
+
     }
 }
