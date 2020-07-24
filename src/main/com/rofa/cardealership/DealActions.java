@@ -10,13 +10,14 @@ public class DealActions {
 
 
     public static void newDeal() {
-
+        /*
         //Get the information about the car and seller
         Seller carSeller = Seller.newSeller();
         Car carForSale = Car.newCar();
         Deal newDeal = new Deal(carForSale,carSeller);
 
         DbStatements.addDealToDB(newDeal);
+        */
     }
 
     public static void searchDeal(){

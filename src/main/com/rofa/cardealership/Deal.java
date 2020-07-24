@@ -44,9 +44,9 @@ public class Deal {
        "\nYear of the manufacture: " + this.carForSale.getYearOfMan()+
        "\nTraveled kilometers: " + this.carForSale.getKmeterTrav() + " km" +
        "\n----------Seller's Details----------"+
-       "\nSeller's name: " + this.carSeller.getName()+
-       "\nSeller's e-mail: " + this.carSeller.getEmailAddress()+
-       "\nSeller's phone number: " + this.carSeller.getPhoneNumber()+
+       "\nSeller's name: " + this.carSeller.getSellerName()+
+       "\nSeller's e-mail: " + this.carSeller.getSellerEmail()+
+       "\nSeller's phone number: " + this.carSeller.getSellerPhoneNumber()+
        "\n-----------------------------------";
 
 

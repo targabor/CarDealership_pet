@@ -81,12 +81,8 @@ public class DbStatements {
                 psmt.setString(2,password);
 
                 rs = psmt.executeQuery();
-
-                if(rs.getInt(1) == 1) {
-                    return true;
-                }else{
-                    return false;
-                }
+                rs.next();
+            return rs.getInt(1) == 1;
 
         }catch (SQLException sqlEx){
             System.out.println("There is an error, at the isSellerExists method!\n" + sqlEx);

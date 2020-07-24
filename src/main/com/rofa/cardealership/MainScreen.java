@@ -65,7 +65,7 @@ public class MainScreen {
 
             case "1" -> {
 
-                ;
+                Authentication.login();
                 chooseScreen(false);
             }
 

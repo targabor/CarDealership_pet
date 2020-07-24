@@ -1,6 +1,7 @@
 package com.rofa.cardealership;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Seller {
@@ -24,7 +25,7 @@ public class Seller {
     }
 
     public boolean setSellerPhoneNumber(String sSellerPhoneNumber) {
-        if(Math.isNumber(sellerPhoneNumber)){
+        if(Math.isNumber(sSellerPhoneNumber)){
             this.sellerPhoneNumber = sSellerPhoneNumber;
             return true;
         }
@@ -39,17 +40,26 @@ public class Seller {
         this.sellerEmail = sellerEmail;
     }
 
-    public Seller getSellerFromDB(String loginEmail, String loginPassword){
+    public static Seller getSellerFromDB(String loginEmail, String loginPassword){
 
 
         Seller returnSeller = null;
 
-        String sql = "select count(sellerID) from seller where emailAddress = ? and password = ?;";
-
+        String sql = "select name,phoneNumber,emailAddress from seller where emailAddress = ? and password = ?;";
         try{
             PreparedStatement psmt = DataBase.getConnection().prepareStatement(sql);
+            psmt.setString(1,loginEmail);
+            psmt.setString(2,loginPassword);
+
+            ResultSet sellerResult = psmt.executeQuery();
+            returnSeller = new Seller();
+            sellerResult.next();
+            returnSeller.setSellerName(sellerResult.getString("name"));
+            returnSeller.setSellerEmail(sellerResult.getString("emailAddress"));
+            returnSeller.setSellerPhoneNumber(sellerResult.getString("phoneNumber"));
+
         }catch (SQLException sqlEX){
-            System.out.println("There is an error at the getSellerFromDB method");
+            System.out.println("There is an error at the getSellerFromDB method\n"+sqlEX);
         }
 
 
